@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    cacheMaxMemorySize: 0
+};
 
 export default nextConfig;
