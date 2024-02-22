@@ -11,14 +11,6 @@ interface VideoUploadOptions {
   privacyStatus?: "public" | "private" | "unlisted";
 }
 
-
-export const config = {
-  api: {
-    bodyParser: false, // Disables the default Next.js body parser
-  },
-};
-
-
 const uploadVideoToYouTube = async (file: File, options: VideoUploadOptions) => {
   const { accessToken, title, description, categoryId, privacyStatus } = options;
 
