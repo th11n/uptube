@@ -95,7 +95,7 @@ const Dropzone = () => {
 
 
         try {
-            const endpoint = "http://127.0.0.1:8000/merge";
+            const endpoint = `http://${process.env.API_URL}/merge`;
             const response = await fetch(endpoint, {
                 method: "POST",
                 body: formData,
