@@ -1,4 +1,6 @@
-import { google, youtube_v3 } from 'googleapis';
+import { AuthPlus } from 'googleapis-common';
+import { youtube } from '@googleapis/youtube'
+
 import { NextRequest, NextResponse } from "next/server";
 import fs from 'fs'
 import { Readable } from 'node:stream';
@@ -16,12 +18,13 @@ const uploadVideoToYouTube = async (file: File, options: VideoUploadOptions) => 
 
   console.log(accessToken, title, description, categoryId, privacyStatus)
 
-  const oauth2Client = new google.auth.OAuth2();
+  const authplus = new AuthPlus()
+  const oauth2Client = new authplus.OAuth2()
   oauth2Client.setCredentials({
     access_token: accessToken
   });
 
-  const youtube = google.youtube({ version: 'v3', auth: oauth2Client });
+  const yt = youtube({ version: 'v3', auth: oauth2Client });
 
   const videoMetadata = {
     snippet: {
@@ -41,8 +44,7 @@ const uploadVideoToYouTube = async (file: File, options: VideoUploadOptions) => 
   stream.push(null);
 
   try {
-    const response = await youtube.videos.insert({
-      part: ['snippet', 'status'],
+    const response = await yt.videos.insert({
       requestBody: videoMetadata,
       media: {
         mimeType: 'video/*',
