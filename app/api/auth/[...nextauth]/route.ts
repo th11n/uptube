@@ -9,11 +9,10 @@ const authOptions: AuthOptions = ({
         authorization: `https://accounts.google.com/o/oauth2/auth/authorize?response_type=code&prompt=login&scope=openid%20email%20profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.upload`,
       }),
     ],
+    secret: process.env.NEXTAUTH_SECRET,
     session: {
       strategy: "jwt",
-    },
-    secret: process.env.NEXTAUTH_SECRET,
-    jwt: {
+    },    jwt: {
       secret: process.env.NEXTAUTH_SECRET,
       maxAge: 5 * 60 * 1000,
     },
