@@ -14,9 +14,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en">
-      <head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-      </head>
       <AuthProvider>
         <body>
           <div>{children}</div>
