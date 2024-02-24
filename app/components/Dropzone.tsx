@@ -95,7 +95,7 @@ const Dropzone = () => {
 
 
         try {
-            const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/merge`;
+            const endpoint = `${process.env.NEXT_PUBLIC_API_URL}`;
             const response = await fetch(endpoint, {
                 method: "POST",
                 body: formData,
