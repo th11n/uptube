@@ -45,6 +45,7 @@ const uploadVideoToYouTube = async (file: File, options: VideoUploadOptions) => 
 
   try {
     const response = await yt.videos.insert({
+      part: ['snippet', 'status'],
       requestBody: videoMetadata,
       media: {
         mimeType: 'video/*',
