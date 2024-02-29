@@ -10,13 +10,14 @@ interface VideoUploadOptions {
   title: string;
   description: string;
   categoryId?: string;
+  tags: string[] | null;
   privacyStatus?: "public" | "private" | "unlisted";
 }
 
 const uploadVideoToYouTube = async (file: File, options: VideoUploadOptions) => {
-  const { accessToken, title, description, categoryId, privacyStatus } = options;
+  const { accessToken, title, description, categoryId, tags, privacyStatus } = options;
 
-  console.log(accessToken, title, description, categoryId, privacyStatus)
+  console.log(accessToken, title, description, categoryId, tags, privacyStatus)
 
   const authplus = new AuthPlus()
   const oauth2Client = new authplus.OAuth2()
@@ -31,6 +32,7 @@ const uploadVideoToYouTube = async (file: File, options: VideoUploadOptions) => 
       title,
       description,
       categoryId,
+      tags,
     },
     status: {
       privacyStatus,
@@ -84,6 +86,7 @@ export async function POST(
   const description = formData.get("description")
   const categoryId = formData.get("category")
   const privacyStatus = formData.get("privacyStatus")
+  const tags = formData.get("tags")
 
   if (!videoFile) {
     return new NextResponse("Video is missing", {
@@ -97,6 +100,7 @@ export async function POST(
     description: description!.toString(),
     categoryId: categoryId?.toString(),
     privacyStatus: privacyStatus as "public" | "private" | "unlisted" | undefined,
+    tags: tags ? (tags.toString().split(',') as string[]) : null,
   };
 
   try {

@@ -74,3 +74,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+.rti--container {
+  --rti-bg: transparent !important;
+  --rti-border: white !important;
+  --rti-main: #44b78bcc !important;
+  --rti-radius: 0rem !important;
+  --rti-tag: #44b78bcc !important;
+  --rti-tag-remove: #e53e3e;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+}
+
+.rti--input {
+  background-color: transparent !important;
+}
+
+.rti--tag {
+  border-radius: 3px !important;
+}

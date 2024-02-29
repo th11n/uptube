@@ -9,6 +9,8 @@ import {
     DialogHeader,
 } from "@/components/ui/dialog"
 
+import { TagsInput } from "react-tag-input-component";
+
 import {
     Select,
     SelectContent,
@@ -23,6 +25,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { CodeSquare } from "lucide-react";
 
 type MovieInfo = {
     title: string;
@@ -47,11 +50,12 @@ const Dropzone = () => {
     });
     const [category, setCategory] = useState<string | null>(null);
     const [open, setOpen] = useState(false);
+    const [selected, setSelected] = useState(["music"]);
     const [privacyStatus, setPrivacyStatus] = useState<PrivacyOption>("public");
 
     const handleChangePrivacy = (newPrivacy: PrivacyOption) => {
         setPrivacyStatus(newPrivacy);
-      };
+    };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAudioFile(e.target.files?.[0] || null);
@@ -78,6 +82,8 @@ const Dropzone = () => {
     const handleCategoryChange = (e: string) => {
         setCategory(e);
     };
+
+    const tagsAsString = selected.join(',');
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         console.log("test")
@@ -113,7 +119,8 @@ const Dropzone = () => {
                     formData.append("category", category)
                 console.log(category)
                 formData.append("privacyStatus", privacyStatus)
-
+                formData.append("tags", tagsAsString);
+                console.log(tagsAsString)
                 const uploadResponse = await fetch("/api/upload", {
                     method: "POST",
                     body: formData
@@ -203,6 +210,12 @@ const Dropzone = () => {
                                         </SelectContent>
                                     </Select>
                                 </div>
+                                <TagsInput
+                                    value={selected}
+                                    onChange={setSelected}
+                                    name="tags"
+                                    placeHolder="enter tags"
+                                />
                                 <div className="flex flex-row">
                                     <RadioGroup className="flex flex-row items-center justify-center gap-6" defaultValue="public" onValueChange={(value) => setPrivacyStatus(value as PrivacyOption)}>
                                         <div className="flex items-center space-x-2">
