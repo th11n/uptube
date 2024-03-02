@@ -10,9 +10,7 @@ const Dashboard = async () => {
         redirect("/");
     }
   return (
-    <div className="h-screen w-full bg-[#1e1e20] flex items-center flex-col">
-        <Navbar />
-        <div className="h-px w-full bg-[#252529]"></div>
+    <div className="w-full bg-[#1e1e20] flex items-center flex-col">
         <div className="flex justify-center w-full my-6">
             <div className="w-96">
                 <Dropzone />
