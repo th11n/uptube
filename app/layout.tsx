@@ -16,8 +16,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <AuthProvider>
-        <body className="!h-screen">
-          <div className="w-full bg-[#1e1e20]">
+        <body className="">
+          <div className="w-full bg-[#1e1e20] flex flex-col">
             {/* <Navbar /> */}
             {/* <div className="h-px w-full bg-[#252529]"></div> */}
             {children}
