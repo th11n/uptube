@@ -66,18 +66,15 @@ export const projects = [
     title: "Step 1",
     description:
       "Log in to dashboard with your youtube account and choose audio file",
-    link: "https://stripe.com",
   },
   {
     title: "Step 2",
     description:
       "Fill in the form with required informations and press submit",
-    link: "https://netflix.com",
   },
   {
     title: "Step 3",
     description:
       "Wait till video uploads to youtube",
-    link: "https://google.com",
   },
 ];
