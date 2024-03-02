@@ -1,9 +1,7 @@
 "use client";
 import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
-import { ChevronsDown } from "lucide-react";
-import animationData from "../../public/lottie/video.json";
 import { HoverEffect } from "./ui/card-hover-effect";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter, redirect } from "next/navigation";
 import { BackgroundBeams } from "./ui/background-beams";
