@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { CodeSquare } from "lucide-react";
+import { BackgroundGradient } from "./ui/background-gradient";
 
 type MovieInfo = {
     title: string;
@@ -137,19 +138,21 @@ const Dropzone = () => {
 
     return (
         <div>
-            <label className="flex justify-center w-full h-32 px-4 transition bg-[#252529] border-2 border-dashed rounded-md appearance-none cursor-pointer border-[#44b78b] hover:border-solid hover:bg-transparent focus:outline-none">
-                <span className="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#949c9c]" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                    </svg>
-                    <span className="font-medium text-[#949c9c]">
-                        {audioFile ? `${audioFile.name}` : 'Drop audio file to Attach, or browse'}
+            <BackgroundGradient className="rounded-[22px]">
+                <label className="flex justify-center rounded-[22px] w-full h-32 px-4 transition bg-[#252529] rounded-md appearance-none cursor-pointer hover:bg-transparent group focus:outline-none">
+                    <span className="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#949c9c] group-hover:text-white" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" strokeWidth="2">
+                            <path strokeLinecap="round" strokeLinejoin="round"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <span className="font-medium text-[#949c9c] group-hover:text-white">
+                            {audioFile ? `${audioFile.name}` : 'Drop audio file to Attach, or browse'}
+                        </span>
                     </span>
-                </span>
-                <input type="file" name="file_upload" className="hidden" accept="audio/*" onChange={(e) => { handleFileChange(e); setOpen(true); }} />
-            </label>
+                    <input type="file" name="file_upload" className="hidden" accept="audio/*" onChange={(e) => { handleFileChange(e); setOpen(true); }} />
+                </label>
+            </BackgroundGradient>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="flex justify-center bg-[#1e1e20] border-[#44b78b] h-11/12 w-80 !max-w-full text-white">
                     <form onSubmit={handleSubmit}>
